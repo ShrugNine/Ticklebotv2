@@ -8,8 +8,7 @@ module.exports = {
     .addStringOption(option => {
         option.setName = "terms"
         option.setDescription = "Define in clear terms which conditions would make you the winner of this wager",
-        option.setRequired = true,
-        option.setMaxLength = 500,
+        option.setRequired = true
     })
     .addIntegerOption(option => { 
         option.setName = "creator_risk",
