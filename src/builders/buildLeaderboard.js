@@ -4,7 +4,7 @@ const leaderboardChannelId = "1077034169613434901";
 const ticklebotId = "824424131406987316";
 
 module.exports = async (client) => {
-  console.log(`Leaderboard has begun build at: ${Date.now()}`)
+  console.log(`Leaderboard has begun build at: ${Date.now()}`);
   const channel = client.channels.cache.get(leaderboardChannelId);
   const filter = {}; // empty filter returns all records
   const users = await TicklecoinSchema.find(filter)
@@ -19,15 +19,14 @@ module.exports = async (client) => {
       });
 
       //post latest
-      const leaderboardChannelHeader = new EmbedBuilder().setTitle(
-        "TickleCoin™ Standings"
-      ).setDescription('Refreshes at the top of each hour.');
+      const leaderboardChannelHeader = new EmbedBuilder()
+        .setTitle("TickleCoin™ Standings")
+        .setDescription("Refreshes at the top of each hour.");
 
       channel.send({ embeds: [leaderboardChannelHeader] });
 
       users.forEach(async (user) => {
         const u = await client.users.fetch(user.user_id);
-        console.log(JSON.stringify(u));
 
         const embed = new EmbedBuilder()
           .setAuthor({

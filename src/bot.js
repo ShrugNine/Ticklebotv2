@@ -28,7 +28,7 @@ for (const folder of functionFolders) {
       .readdirSync(`./src/functions/${folder}`)
       .filter((file) => file.endsWith(".js"));
     for (const file of functionFiles) {
-      console.log(`File: ${file}`);
+      //console.log(`File: ${file}`);
       require(`./functions/${folder}/${file}`)(client); // pass client to file so its accessible within
     }
   }
