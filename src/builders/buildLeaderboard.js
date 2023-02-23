@@ -21,7 +21,7 @@ module.exports = async (client) => {
       //post latest
       const leaderboardChannelHeader = new EmbedBuilder()
         .setTitle("TickleCoin™ Standings")
-        .setDescription("Refreshes every hour.");
+        .setDescription("Refreshes at the top of every hour.");
 
       channel.send({ embeds: [leaderboardChannelHeader] });
 
