@@ -15,7 +15,6 @@ module.exports = (client) => {
         const command = require(`../../commands/${folder}/${file}`);
         commands.set(command.data.name, command);
         commandArray.push(command.data.toJSON());
-        console.log(`Command: ${command.data.name} has passed through the handler`);
       }
     }
 
@@ -23,13 +22,10 @@ module.exports = (client) => {
     const guildId = "279706152940470273";
     const rest = new REST({ version: "9" }).setToken(process.env.BOT_TOKEN);
     try {
-      console.log("Started refreshing application (/) commands.");
 
       await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
         body: client.commandArray,
       });
-
-      console.log("Successfully reloaded application (/) commands.");
     } catch (error) {
       console.error(error);
     }

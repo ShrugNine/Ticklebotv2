@@ -2,7 +2,6 @@ const TicklecoinSchema = require("../../models/ticklecoinSchema.js");
 
 module.exports = async (message) => {
   if (!message) {
-    console.log("No message provided!");
     return;
   }
 
@@ -18,8 +17,6 @@ module.exports = async (message) => {
   const filter = { user_id: message.author.id };
   const update = { $inc: { current_balance: payout } };
   let userAccount;
-
-  console.log(`Payout=${payout}`);
 
   try {
     userAccount = await TicklecoinSchema.findOneAndUpdate(filter, update, {

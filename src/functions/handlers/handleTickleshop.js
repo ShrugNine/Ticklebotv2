@@ -4,7 +4,6 @@ const {
   ButtonStyle,
   EmbedBuilder,
   AttachmentBuilder,
-  Attachment,
 } = require("discord.js");
 
 const items = [
