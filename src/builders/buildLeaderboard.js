@@ -23,7 +23,7 @@ module.exports = async (client) => {
 
       const embed = new EmbedBuilder()
         .setTitle("The TickleCoin™ Leaderboard")
-        .setDescription("The top 10 TickleCoin wallets.")
+        .setDescription("The top 10 TickleCoin wallets. Refreshes hourly.")
         .setTimestamp(new Date(Date.now()))
         .setColor("60FF78");
       //.setThumbnail(`attachment://${image}`);
