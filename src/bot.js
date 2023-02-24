@@ -3,8 +3,6 @@ const { BOT_TOKEN } = process.env;
 
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
-const nodeCron = require("node-cron");
-const leaderboard = require('./builders/buildLeaderboard.js');
 
 const client = new Client({
   intents: [
@@ -34,10 +32,7 @@ for (const folder of functionFolders) {
   }
 }
 
-const leaderboardJob = nodeCron.schedule("0 * * * *", (client) => leaderboard, {scheduled: false}) // run each hour, minute 0
-
 client.handleEvents();
 client.handleCommands();
 client.handleComponents();
 client.login(BOT_TOKEN);
-leaderboardJob.start(); //start cron job

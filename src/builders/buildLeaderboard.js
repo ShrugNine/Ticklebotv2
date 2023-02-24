@@ -5,7 +5,7 @@ const ticklebotId = "824424131406987316";
 
 module.exports = async (client) => {
   console.log(`Leaderboard has begun build at: ${new Date(Date.now())}`);
-  const channel = client.channels.cache.get(leaderboardChannelId);
+  const channel = await client.channels.cache.get(leaderboardChannelId);
   const filter = {}; // empty filter returns all records
   const users = await TicklecoinSchema.find(filter)
     .sort({ current_balance: -1 })
@@ -19,20 +19,33 @@ module.exports = async (client) => {
         channel.bulkDelete(messages);
       });
 
+      const image = "../assets/ticklebot.jpg";
+
       const embed = new EmbedBuilder()
-        .setTitle("The TickleCoin Leaderboard™")
-        .setImage(u.displayAvatarURL());
+        .setTitle("The TickleCoin™ Leaderboard")
+        .setDescription("The top 10 TickleCoin wallets.")
+        .setTimestamp(new Date(Date.now()))
+        .setColor("60FF78");
+      //.setThumbnail(`attachment://${image}`);
+
+      let x = 1;
 
       users.forEach((user) => {
         embed.addFields([
           {
-            name: user.display_name,
-            value: user.current_balance,
-          },
+            name: `#${x}. ${user.display_name}`,
+            value: user.current_balance.toString(),
+            inline: false,
+          }
         ]);
+
+        x += 1;
+
       });
 
-      channel.send({ embeds: [embed] });
+      channel.send({
+        embeds: [embed],
+      });
     } catch (e) {
       console.error(e);
     }
