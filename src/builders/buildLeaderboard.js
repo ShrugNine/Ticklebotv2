@@ -11,7 +11,9 @@ module.exports = async (client) => {
     .sort({ current_balance: -1 })
     .limit(10);
 
+
   if (users) {
+    console.log(`Found users: $JSON.stringify(users)`);
     //clear the leaderboard
     try {
       await channel.messages.fetch({ limit: 100 }).then((messages) => {
