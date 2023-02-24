@@ -6,7 +6,7 @@ module.exports = {
     .setName("leaderboard")
     .setDescription("Force the leaderboard to update"),
   async execute(interaction, client) {
-    await leaderboard();
+    await leaderboard(client);
 
     await interaction.reply({
       content: `Leaderboard updated!`,
