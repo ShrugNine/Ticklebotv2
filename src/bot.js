@@ -34,7 +34,7 @@ for (const folder of functionFolders) {
   }
 }
 
-const leaderboardJob = nodeCron.schedule("0 * * * *", leaderboard(client), {scheduled: false}) // run each hour, minute 0
+const leaderboardJob = nodeCron.schedule("0 * * * *", (client) => leaderboard, {scheduled: false}) // run each hour, minute 0
 
 client.handleEvents();
 client.handleCommands();
