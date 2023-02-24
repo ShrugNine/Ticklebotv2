@@ -1,4 +1,4 @@
-const leaderboard = require("./builders/buildLeaderboard.js");
+const leaderboard = require("../../builders/buildLeaderboard.js");
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
