@@ -11,34 +11,28 @@ module.exports = async (client) => {
     .sort({ current_balance: -1 })
     .limit(10);
 
-
   if (users) {
     //console.log(`Found users: ${JSON.stringify(users)}`);
     //clear the leaderboard
     try {
-      await channel.messages.fetch({ limit: 100 }).then((messages) => {
+      await channel.messages.fetch({ limit: 10 }).then((messages) => {
         channel.bulkDelete(messages);
       });
 
-      //post latest
-      const leaderboardChannelHeader = new EmbedBuilder()
-        .setTitle("TickleCoin™ Standings")
-        .setDescription("Refreshes at the top of every hour.");
+      const embed = new EmbedBuilder()
+        .setTitle("The TickleCoin Leaderboard™")
+        .setImage(u.displayAvatarURL());
 
-      channel.send({ embeds: [leaderboardChannelHeader] });
-
-      users.forEach(async (user) => {
-        const u = await client.users.fetch(user.user_id);
-
-        const embed = new EmbedBuilder()
-          .setAuthor({
+      users.forEach((user) => {
+        embed.addFields([
+          {
             name: user.display_name,
-            avatarURL: u.displayAvatarURL(),
-          })
-          .setTitle(user.current_balance.toString())
-          .setImage(u.displayAvatarURL());
-        channel.send({ embeds: [embed] });
+            value: user.current_balance,
+          },
+        ]);
       });
+
+      channel.send({ embeds: [embed] });
     } catch (e) {
       console.error(e);
     }
