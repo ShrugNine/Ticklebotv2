@@ -40,4 +40,4 @@ client.handleEvents();
 client.handleCommands();
 client.handleComponents();
 client.login(BOT_TOKEN);
-leaderboardJob.start();
+leaderboardJob.start(); //start cron job
