@@ -7,6 +7,7 @@ const contractSchema = new mongoose.Schema({
     creator_risk: {type: Number, default: 0},
     creator_amount_to_accept: {type: Number},
     expiration: {type: Date},
+    created: {type: Date},
     status: {type: String, enum: ['Open', 'Active', 'Pending', 'Closed']}
 });
 
