@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { BOT_TOKEN } = process.env;
 
-const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const { Client, Collection, GatewayIntentBits, Partials } = require("discord.js");
 const fs = require("fs");
 
 const client = new Client({
